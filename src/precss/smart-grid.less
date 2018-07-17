@@ -8,6 +8,7 @@
 @break_xs: 740px;
 @break_xxs: 600px;
 @break_mini: 500px;
+@break_mobile: 320px;
 
 .reset(){
     body,div,dl,dt,dd,ul,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,input,textarea,p,blockquote,th,td{
@@ -87,6 +88,11 @@
     @media screen and (max-width: @break_mini){
         padding-left: 10px;
         padding-right: 10px;
+    }
+
+    @media screen and (max-width: @break_mobile){
+        padding-left: 5px;
+        padding-right: 5px;
     }
 }
 .row-flex(){
@@ -439,6 +445,65 @@
 }
 .mini-block(@content){
     @media screen and (max-width: @break_mini){
+        @content();
+    }
+}
+.size-mobile(@n){
+    @media screen and (max-width: @break_mobile){
+        @value: @atom * @n;
+        width: ~"calc(@{value} - @{offset})";
+    }
+}
+.offset-mobile(@n){
+    @media screen and (max-width: @break_mobile){
+        @value: @atom * @n;
+        margin-left: ~"calc(@{value} + @{offset_one_side})";
+        margin-right: ~"calc(@{value} + @{offset_one_side})";
+    }
+}
+.offset-left-mobile(@n){
+    @media screen and (max-width: @break_mobile){
+        @value: @atom * @n;
+        margin-left: ~"calc(@{value} + @{offset_one_side})";
+    }
+}
+.offset-right-mobile(@n){
+    @media screen and (max-width: @break_mobile){
+        @value: @atom * @n;
+        margin-right: ~"calc(@{value} + @{offset_one_side})";
+    }
+}
+.offset-padding-mobile(@n){
+    @media screen and (max-width: @break_mobile){
+        @value: @atom * @n;
+        padding-left: ~"calc(@{value} + @{offset_one_side})";
+        padding-right: ~"calc(@{value} + @{offset_one_side})";
+    }
+}
+.offset-left-padding-mobile(@n){
+    @media screen and (max-width: @break_mobile){
+        @value: @atom * @n;
+        padding-left: ~"calc(@{value} + @{offset_one_side})";
+    }
+}
+.offset-right-padding-mobile(@n){
+    @media screen and (max-width: @break_mobile){
+        @value: @atom * @n;
+        padding-right: ~"calc(@{value} + @{offset_one_side})";
+    }
+}
+.justify-content-mobile(@value){
+    @media screen and (max-width: @break_mobile){
+        justify-content: @value;
+    }
+}
+.mobile(@name, @value){
+    @media screen and (max-width: @break_mobile){
+        @{name}: @value;
+    }
+}
+.mobile-block(@content){
+    @media screen and (max-width: @break_mobile){
         @content();
     }
 }
