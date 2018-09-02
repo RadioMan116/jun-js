@@ -30,11 +30,9 @@ gulp.task("build", function() {
         cascade: false
       })
     )
-    .pipe(
-      cleanCSS({
-        level: 2
-      })
-    )
+    // .pipe(cleanCSS({
+    //     level: 2
+    // }))
     .pipe(sourcemaps.write("."))
     .pipe(gulp.dest(config.src + config.css.dest))
     .pipe(
