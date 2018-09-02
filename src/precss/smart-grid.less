@@ -6,16 +6,18 @@
 @break_dd: 1700px;
 @break_id: 1500px;
 @break_if: 1335px;
+@break_ttt: 1250px;
 @break_ig: 1190px;
 @break_ps: 1090px;
 @break_ld: 1024px;
+@break_erm: 991px;
 @break_m: 960px;
 @break_ms: 949px;
 @break_s: 933px;
 @break_e: 885px;
 @break_ee: 835px;
 @break_am: 800px;
-@break_sm: 768px;
+@break_sm: 767px;
 @break_md: 730px;
 @break_pr: 655px;
 @break_wd: 596px;
@@ -99,6 +101,11 @@
         padding-right: 15px;
     }
 
+    @media screen and (max-width: @break_ttt){
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
     @media screen and (max-width: @break_ig){
         padding-left: 15px;
         padding-right: 15px;
@@ -110,6 +117,11 @@
     }
 
     @media screen and (max-width: @break_ld){
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    @media screen and (max-width: @break_erm){
         padding-left: 15px;
         padding-right: 15px;
     }
@@ -444,6 +456,65 @@
         @content();
     }
 }
+.size-ttt(@n){
+    @media screen and (max-width: @break_ttt){
+        @value: @atom * @n;
+        width: ~"calc(@{value} - @{offset})";
+    }
+}
+.offset-ttt(@n){
+    @media screen and (max-width: @break_ttt){
+        @value: @atom * @n;
+        margin-left: ~"calc(@{value} + @{offset_one_side})";
+        margin-right: ~"calc(@{value} + @{offset_one_side})";
+    }
+}
+.offset-left-ttt(@n){
+    @media screen and (max-width: @break_ttt){
+        @value: @atom * @n;
+        margin-left: ~"calc(@{value} + @{offset_one_side})";
+    }
+}
+.offset-right-ttt(@n){
+    @media screen and (max-width: @break_ttt){
+        @value: @atom * @n;
+        margin-right: ~"calc(@{value} + @{offset_one_side})";
+    }
+}
+.offset-padding-ttt(@n){
+    @media screen and (max-width: @break_ttt){
+        @value: @atom * @n;
+        padding-left: ~"calc(@{value} + @{offset_one_side})";
+        padding-right: ~"calc(@{value} + @{offset_one_side})";
+    }
+}
+.offset-left-padding-ttt(@n){
+    @media screen and (max-width: @break_ttt){
+        @value: @atom * @n;
+        padding-left: ~"calc(@{value} + @{offset_one_side})";
+    }
+}
+.offset-right-padding-ttt(@n){
+    @media screen and (max-width: @break_ttt){
+        @value: @atom * @n;
+        padding-right: ~"calc(@{value} + @{offset_one_side})";
+    }
+}
+.justify-content-ttt(@value){
+    @media screen and (max-width: @break_ttt){
+        justify-content: @value;
+    }
+}
+.ttt(@name, @value){
+    @media screen and (max-width: @break_ttt){
+        @{name}: @value;
+    }
+}
+.ttt-block(@content){
+    @media screen and (max-width: @break_ttt){
+        @content();
+    }
+}
 .size-ig(@n){
     @media screen and (max-width: @break_ig){
         @value: @atom * @n;
@@ -618,6 +689,65 @@
 }
 .ld-block(@content){
     @media screen and (max-width: @break_ld){
+        @content();
+    }
+}
+.size-erm(@n){
+    @media screen and (max-width: @break_erm){
+        @value: @atom * @n;
+        width: ~"calc(@{value} - @{offset})";
+    }
+}
+.offset-erm(@n){
+    @media screen and (max-width: @break_erm){
+        @value: @atom * @n;
+        margin-left: ~"calc(@{value} + @{offset_one_side})";
+        margin-right: ~"calc(@{value} + @{offset_one_side})";
+    }
+}
+.offset-left-erm(@n){
+    @media screen and (max-width: @break_erm){
+        @value: @atom * @n;
+        margin-left: ~"calc(@{value} + @{offset_one_side})";
+    }
+}
+.offset-right-erm(@n){
+    @media screen and (max-width: @break_erm){
+        @value: @atom * @n;
+        margin-right: ~"calc(@{value} + @{offset_one_side})";
+    }
+}
+.offset-padding-erm(@n){
+    @media screen and (max-width: @break_erm){
+        @value: @atom * @n;
+        padding-left: ~"calc(@{value} + @{offset_one_side})";
+        padding-right: ~"calc(@{value} + @{offset_one_side})";
+    }
+}
+.offset-left-padding-erm(@n){
+    @media screen and (max-width: @break_erm){
+        @value: @atom * @n;
+        padding-left: ~"calc(@{value} + @{offset_one_side})";
+    }
+}
+.offset-right-padding-erm(@n){
+    @media screen and (max-width: @break_erm){
+        @value: @atom * @n;
+        padding-right: ~"calc(@{value} + @{offset_one_side})";
+    }
+}
+.justify-content-erm(@value){
+    @media screen and (max-width: @break_erm){
+        justify-content: @value;
+    }
+}
+.erm(@name, @value){
+    @media screen and (max-width: @break_erm){
+        @{name}: @value;
+    }
+}
+.erm-block(@content){
+    @media screen and (max-width: @break_erm){
         @content();
     }
 }
