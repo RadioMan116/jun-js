@@ -1,12 +1,12 @@
 'use strict'
 var cw = document.querySelector('#class');
 var hw = document.querySelector('#home');
-var money = ('Р’Р°С€ Р±СЋРґР¶РµС‚ РЅР° РјРµСЃСЏС†?', '999999999'),
-	time = ('Р’РІРµРґРёС‚Рµ РґР°С‚Сѓ РІ С„РѕСЂРјР°С‚Рµ YYYY-MM-DD', '');
-var a1 = ("Р’РІРµРґРёС‚Рµ РѕР±СЏР·Р°С‚РµР»СЊРЅСѓСЋ СЃС‚Р°С‚СЊСЋ СЂР°СЃС…РѕРґРѕРІ РІ СЌС‚РѕРј РјРµСЃСЏС†Рµ", ''),
-	a2 = ("Р’Рѕ СЃРєРѕР»СЊРєРѕ РѕР±РѕР№РґРµС‚СЃСЏ?", ''),
-	a3 = ("Р’РІРµРґРёС‚Рµ РѕР±СЏР·Р°С‚РµР»СЊРЅСѓСЋ СЃС‚Р°С‚СЊСЋ СЂР°СЃС…РѕРґРѕРІ РІ СЌС‚РѕРј РјРµСЃСЏС†Рµ", ''),
-	a4 = ("Р’Рѕ СЃРєРѕР»СЊРєРѕ РѕР±РѕР№РґРµС‚СЃСЏ?", '');
+var money = ('Ваш бюджет на месяц?', '999999999'),
+	time = ('Введите дату в формате YYYY-MM-DD', '');
+var a1 = ("Введите обязательную статью расходов в этом месяце", ''),
+	a2 = ("Во сколько обойдется?", ''),
+	a3 = ("Введите обязательную статью расходов в этом месяце", ''),
+	a4 = ("Во сколько обойдется?", '');
 
 var appData = {
 	budget: money,
@@ -18,10 +18,13 @@ var appData = {
 };
 appData.expenses.a1 = a2;
 appData.expenses.a3 = a4;
-cw.innerHTML += "<div>Р±СЋРґР¶РµС‚ РЅР° 1 РґРµРЅСЊ " + appData.budget / 30 + "</div>";
+cw.innerHTML += "<div>бюджет на 1 день " + appData.budget / 30 + "</div>";
 // console.log(appData.budget / 30);
 // console.log(cw);
 function showFirstMessage(text) {
 	cw.innerHTML += "<div>" + text + "</div>";
 };
-showFirstMessage("<div>" + "С‘Р¶РёРє" + ' РїРѕС€РµР» РЅР° ' + "РЅР°С…СѓР№" + "</div>");
+showFirstMessage("<div>" + "ёжик" + ' пошел на ' + "нахуй" + "</div>");
+$(document).ready(function () {
+
+});
