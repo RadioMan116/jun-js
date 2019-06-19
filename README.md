@@ -1,1 +1,1 @@
-# MIB
+# junior javascript

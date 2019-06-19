@@ -1,82 +1,57 @@
-const gulp = require('gulp');
-const sass = require('gulp-sass');
-const preproc = require('gulp-less');
-const gcmq = require('gulp-group-css-media-queries');
-const autoprefixer = require('gulp-autoprefixer');
-const cleanCSS = require('gulp-clean-css');
-const concat = require('gulp-concat');
-const uglify = require('gulp-uglify');
-const cssmin = require('gulp-cssmin');
-const rename = require('gulp-rename');
-const htmlmin = require('gulp-htmlmin');
-const ejs = require('gulp-ejs');
-// var babel = require('gulp-babel');
-const fs = require('fs');
+/*
+ * 
+ * Определяем переменные 
+ *
+ */
 
-gulp.task('grid', function () {
-    return gulp.src('src/style/**/grid-system.scss')
-        .pipe(sass())
-        .pipe(cssmin())
-        .pipe(gulp.dest('dist/style/'));
-});
+var gulp = require('gulp'), // Сообственно Gulp JS
+	uglify = require('gulp-uglify'), // Минификация JS
+	concat = require('gulp-concat'), // Склейка файлов
+	imagemin = require('gulp-imagemin'), // Минификация изображений
+	csso = require('gulp-csso'), // Минификация CSS
+	sass = require('gulp-sass'); // Конверстация SASS (SCSS) в CSS
 
+/*
+ * 
+ * Создаем задачи (таски) 
+ *
+ */
+
+// Задача "sass". Запускается командой "gulp sass"
 gulp.task('sass', function () {
-    return gulp.src('src/style/**/*.scss')
-        .pipe(sass())
-        .pipe(cssmin())
-        .pipe(gulp.dest('dist/style/'));
-});
-gulp.task('preproc', function () {
-    return gulp.src('src/precss/styles.less')
-        .pipe(preproc())
-        .pipe(gcmq())
-        .pipe(autoprefixer({
-            browsers: ['> 0.1%'],
-            cascade: false
-        }))
-        .pipe(cleanCSS({
-            level: 2
-        }))
-        .pipe(gulp.dest('dist/style/'));
+	gulp.src('./assets/styles/style.scss') // файл, который обрабатываем
+		.pipe(sass().on('error', sass.logError)) // конвертируем sass в css
+		.pipe(csso()) // минифицируем css, полученный на предыдущем шаге
+		.pipe(gulp.dest('./public/css/')); // результат пишем по указанному адресу
 });
 
-gulp.task('scripts', function () {
-    return gulp.src('src/js/**/*.js')
-        // .pipe(babel({
-        //     presets: ['es2015']
-        // }))
-        .pipe(uglify().on('error', function (e) {
-            console.log(e);
-        }))
-        .pipe(gulp.dest('./dist/js/'))
+// Задача "js". Запускается командой "gulp js"
+gulp.task('js', function () {
+	gulp.src([
+			'./assets/javascripts/jquery-2.1.4.js',
+			'./assets/javascripts/bootstrap.js',
+			'./assets/javascripts/script.js'
+		]) // файлы, которые обрабатываем
+		.pipe(concat('min.js')) // склеиваем все JS
+		.pipe(uglify()) // получившуюся "портянку" минифицируем 
+		.pipe(gulp.dest('./public/js/')) // результат пишем по указанному адресу
 });
 
-gulp.task('sections', ['preproc'], function () {
-    var criticalStyle = fs.readFileSync('./dist/style/styles.css', 'utf8');
-    var version = '4';
-    return gulp.src('./src/*.html')
-        // .pipe(ejs({criticalStyle: criticalStyle, version: version}, {}, {ext: '.html'}))
-        .pipe(htmlmin({collapseWhitespace: true}))
-        .pipe(gulp.dest('./dist'))
+// Задача "images". Запускается командой "gulp images"
+gulp.task('images', function () {
+	gulp.src('.assets/images/**/*') // берем любые файлы в папке и ее подпапках
+		.pipe(imagemin()) // оптимизируем изображения для веба
+		.pipe(gulp.dest('./public/images/')) // результат пишем по указанному адресу
+
 });
 
-gulp.task('assets', function () {
-    gulp.src(['./src/img/**/*'])
-        .pipe(gulp.dest('./dist/img'))
+// Задача "watch". Запускается командой "gulp watch"
+// Она следит за изменениями файлов и автоматически запускает другие задачи
+gulp.task('watch', function () {
+	// При изменение файлов *.scss в папке "styles" и подпапках запускаем задачу sass
+	gulp.watch('./assets/styles/**/*.scss', ['sass']);
+	// При изменение файлов *.js папке "javascripts" и подпапках запускаем задачу js
+	gulp.watch('./assets/javascripts/**/*.js', ['js']);
+	// При изменение любых файлов в папке "images" и подпапках запускаем задачу images
+	gulp.watch('./assets/images/**/*', ['images']);
 });
-
-gulp.task('fonts', function () {
-    gulp.src(['./src/fonts/**/*'])
-        .pipe(gulp.dest('./dist/fonts'))
-});
-
-gulp.task('watch', ['default'], function () {
-    gulp.watch('src/js/**/*.js', ['scripts']);
-    gulp.watch('src/**/*.ejs', ['sections']);
-    gulp.watch('src/style/**/*.scss', ['sass', 'sections']);
-    gulp.watch('src/style/**/*.less', ['preproc']);
-    gulp.watch('src/img/**/*', ['assets']);
-});
-
-
-gulp.task('default', ['sass','preproc', 'assets', 'scripts', 'sections', 'fonts', 'grid']);
