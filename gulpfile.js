@@ -28,14 +28,14 @@ gulp.task('sass', function () {
 // Задача "js". Запускается командой "gulp js"
 gulp.task('js', function () {
 	gulp.src([
-			'./assets/javascripts/jquery-2.1.4.js',
-			'./assets/javascripts/bootstrap.js',
+			// './assets/javascripts/jquery-2.1.4.js',
+			// './assets/javascripts/bootstrap.js',
 			'./assets/javascripts/class-work.js',
 			'./assets/javascripts/wome-work.js',
 			'./assets/javascripts/script.js'
 		]) // файлы, которые обрабатываем
 		.pipe(concat('min.js')) // склеиваем все JS
-		.pipe(uglify()) // получившуюся "портянку" минифицируем 
+		// .pipe(uglify()) // получившуюся "портянку" минифицируем 
 		.pipe(gulp.dest('./public/js/')) // результат пишем по указанному адресу
 });
 
