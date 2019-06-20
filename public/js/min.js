@@ -29,6 +29,7 @@ hw.innerHTML += "<div>" + str.toLowerCase() + "</div>";
 
 var twelwe = "12.2px";
 console.log(Math.round(twelwe));
+
 hw.innerHTML += "<div>" + Math.round(twelwe) + "</div>";
 console.log(parseInt(twelwe));
 hw.innerHTML += "<div>" + parseInt(twelwe) + "</div>";
