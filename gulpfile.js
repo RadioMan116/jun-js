@@ -30,6 +30,8 @@ gulp.task('js', function () {
 	gulp.src([
 			'./assets/javascripts/jquery-2.1.4.js',
 			'./assets/javascripts/bootstrap.js',
+			'./assets/javascripts/class-work.js',
+			'./assets/javascripts/wome-work.js',
 			'./assets/javascripts/script.js'
 		]) // файлы, которые обрабатываем
 		.pipe(concat('min.js')) // склеиваем все JS

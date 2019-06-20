@@ -1,2 +1,14 @@
 html,
 body {}
+
+#home,
+#class {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+div {
+	font-size: 12px;
+	padding: 10px;
+	border: 1px solid violet;
+}

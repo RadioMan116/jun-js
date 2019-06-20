@@ -1,12 +1,8 @@
 'use strict'
 var cw = document.querySelector('#class');
 var hw = document.querySelector('#home');
-var money = ('Ваш бюджет на месяц?', '999999999'),
-	time = ('Введите дату в формате YYYY-MM-DD', '');
-var a1 = ("Введите обязательную статью расходов в этом месяце", ''),
-	a2 = ("Во сколько обойдется?", ''),
-	a3 = ("Введите обязательную статью расходов в этом месяце", ''),
-	a4 = ("Во сколько обойдется?", '');
+var money = +prompt('Р’Р°С€ Р±СЋРґР¶РµС‚ РЅР° РјРµСЃСЏС†?', '999999999'),
+	time = prompt('Р’РІРµРґРёС‚Рµ РґР°С‚Сѓ РІ С„РѕСЂРјР°С‚Рµ YYYY-MM-DD', '');
 
 var appData = {
 	budget: money,
@@ -16,15 +12,62 @@ var appData = {
 	income: [],
 	savings: false
 };
-appData.expenses.a1 = a2;
-appData.expenses.a3 = a4;
-cw.innerHTML += "<div>бюджет на 1 день " + appData.budget / 30 + "</div>";
+
+// cw.innerHTML += "<div>Р±СЋРґР¶РµС‚ РЅР° 1 РґРµРЅСЊ " + appData.budget / 30 + "</div>";
 // console.log(appData.budget / 30);
 // console.log(cw);
-function showFirstMessage(text) {
-	cw.innerHTML += "<div>" + text + "</div>";
-};
-showFirstMessage("<div>" + "ёжик" + ' пошел на ' + "нахуй" + "</div>");
-$(document).ready(function () {
+// function showFirstMessage(text) {
+// 	cw.innerHTML += "<div>" + text + "</div>";
+// };
+// showFirstMessage("<div>" + "С‘Р¶РёРє" + ' РїРѕС€РµР» РЅР° ' + "РЅР°С…СѓР№" + "</div>");
 
-});
+// for (var d = 0; d < 2; d++) {
+// 	var a = prompt("Р’РІРµРґРёС‚Рµ РѕР±СЏР·Р°С‚РµР»СЊРЅСѓСЋ СЃС‚Р°С‚СЊСЋ СЂР°СЃС…РѕРґРѕРІ РІ СЌС‚РѕРј РјРµСЃСЏС†Рµ", ''),
+// 		b = prompt("Р’Рѕ СЃРєРѕР»СЊРєРѕ РѕР±РѕР№РґРµС‚СЃСЏ?", '');
+// 	if ((typeof (a)) === 'string' && ((typeof (a)) != null && (typeof (b))) != null && a != '' && b != '' && a.length < 50) {
+// 		console.log('done');
+// 		appData.expenses[a] = b;
+// 	} else {
+
+// 	}
+
+// }
+var dd = 0;
+while (dd < 2) {
+	dd++;
+	var a = prompt("Р’РІРµРґРёС‚Рµ РѕР±СЏР·Р°С‚РµР»СЊРЅСѓСЋ СЃС‚Р°С‚СЊСЋ СЂР°СЃС…РѕРґРѕРІ РІ СЌС‚РѕРј РјРµСЃСЏС†Рµ", ''),
+		b = prompt("Р’Рѕ СЃРєРѕР»СЊРєРѕ РѕР±РѕР№РґРµС‚СЃСЏ?", '');
+	if ((typeof (a)) === 'string' && ((typeof (a)) != null && (typeof (b))) != null && a != '' && b != '' && a.length < 50) {
+		console.log('done');
+		appData.expenses[a] = b;
+	} else {
+
+	}
+}
+do {
+	dd++;
+	dd++;
+	var a = prompt("Р’РІРµРґРёС‚Рµ РѕР±СЏР·Р°С‚РµР»СЊРЅСѓСЋ СЃС‚Р°С‚СЊСЋ СЂР°СЃС…РѕРґРѕРІ РІ СЌС‚РѕРј РјРµСЃСЏС†Рµ", ''),
+		b = prompt("Р’Рѕ СЃРєРѕР»СЊРєРѕ РѕР±РѕР№РґРµС‚СЃСЏ?", '');
+	if ((typeof (a)) === 'string' && ((typeof (a)) != null && (typeof (b))) != null && a != '' && b != '' && a.length < 50) {
+		console.log('done');
+		appData.expenses[a] = b;
+	} else {
+
+	}
+
+}
+while (dd < 2);
+
+appData.moneyPerDay = appData.budget / 30;
+// alert(appData.budget / 30);
+console.log('РµРЅРµР¶РµРґРµР»СЊРЅС‹Р№ Р±СЋРґР¶РµС‚: ' + appData.moneyPerDay);
+if (appData.moneyPerDay < 100) {
+	console.log('РњРёРЅРёРјР°Р»СЊРЅС‹Р№ СѓСЂРѕРІРµРЅСЊ РґРѕСЃС‚Р°С‚РєР°');
+} else if (appData.moneyPerDay > 100 && appData.moneyPerDay < 2000) {
+	console.log('СЃСЂРµРґРЅРёР№ СѓСЂРѕРІРµСЊ РґРѕСЃС‚Р°С‚РєР°');
+} else if (appData.moneyPerDay > 2000) {
+	console.log('РІС‹СЃРѕРєРёР№ СѓСЂРѕРІРµРЅСЊ РґРѕСЃС‚Р°С‚РєР°');
+} else {
+	console.log('РїСЂРѕРёР·РѕС€Р»Р° РѕС€РёР±РєР°');
+}
